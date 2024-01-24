@@ -1,5 +1,8 @@
 const mongoose = require('./db.js')
 
+//Schema for storing the users details 
+a = 4
+console.log(a)
 const d1 = new mongoose.Schema({
     userid:String,
     name:String,
