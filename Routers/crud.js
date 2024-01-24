@@ -3,7 +3,7 @@ const express = require('express')
 const controllers = require('../controllers/crudControllers');
 
 const router = express.Router();
-
+//routes
 router.post('/adduser',controllers.adduser);
 
 router.delete('/deleteuser',controllers.deleteuser);
