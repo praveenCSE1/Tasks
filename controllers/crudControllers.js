@@ -28,7 +28,6 @@ const adduser = async(req,res)=>{
 
 const updateuser = async (req, res) => {
     try {
-  
         const db = mongoose.connection; 
         console.log(req.body._id)
         let current = await details.findByIdAndUpdate(
