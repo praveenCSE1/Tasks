@@ -10,4 +10,5 @@ const d1 = new mongoose.Schema({
   })
   const details = mongoose.model("details",d1);
 
+
 module.exports = details;
