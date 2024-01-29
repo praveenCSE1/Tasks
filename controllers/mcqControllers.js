@@ -1,4 +1,4 @@
-const mcq = require('../model/McqSchema')
+const mcq = require('../Models/McqSchema')
 
 
 const display_mcq = async(req,res)=>{

@@ -1,5 +1,5 @@
 const express = require('express')
-const controller = require('../controllers/mcqControllers')
+const controller = require('../Controllers/mcqControllers')
 const router = express.Router();
 
 //To display the mcq present in the database

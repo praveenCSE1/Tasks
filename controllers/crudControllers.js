@@ -1,6 +1,6 @@
-const mongoose = require('../model/db')
+const mongoose = require('../Models/db')
 const express = require('express')
-const details = require('../model/DetailsSchema')
+const details = require('../Models/DetailsSchema')
 
 const adduser = async(req,res)=>{
     try{   

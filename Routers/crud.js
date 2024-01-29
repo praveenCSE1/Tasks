@@ -1,6 +1,6 @@
 
 const express = require('express')
-const controllers = require('../controllers/crudControllers');
+const controllers = require('../Controllers/crudControllers');
 
 const router = express.Router();
 //routes
