@@ -1,6 +1,6 @@
 const express = require('express')
 const mongoose = require('../model/db.js')
-const user = require('../model/schema.js')
+const user = require('../model/RegistrationSchema.js')
 const bcrypt = require('bcrypt')
 
 

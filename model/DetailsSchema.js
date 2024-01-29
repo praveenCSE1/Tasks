@@ -1,6 +1,6 @@
 const mongoose = require('./db.js')
 
-const d1 = new mongoose.Schema({
+const Details = new mongoose.Schema({
     userid:String,
     name:String,
     email:String,
@@ -8,7 +8,7 @@ const d1 = new mongoose.Schema({
     phn:String,
     dob:Date
   })
-  const details = mongoose.model("details",d1);
+  const details = mongoose.model("details",Details);
 
 
 module.exports = details;

@@ -1,6 +1,6 @@
 const mongoose = require('../model/db')
 const express = require('express')
-const details = require('../model/dschema')
+const details = require('../model/DetailsSchema')
 
 const adduser = async(req,res)=>{
     try{   
@@ -12,9 +12,6 @@ const adduser = async(req,res)=>{
         phn: req.body.mobileNumber,
         dob: req.body.dateOfBirth
     });
-
-
-
     const savedUser = await newUser.save();
    console.log(savedUser);
     res.redirect('/users')
