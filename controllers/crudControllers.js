@@ -1,9 +1,7 @@
 const mongoose = require('../model/db')
 const express = require('express')
 const details = require('../model/dschema')
-a=0;
-b=0;
-a=b;
+
 const adduser = async(req,res)=>{
     try{   
       const newUser = new details({
