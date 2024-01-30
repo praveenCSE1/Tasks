@@ -1,6 +1,5 @@
-const mcq = require('../Models/McqSchema')
-
-
+const mcq = require('../Models/McqQuestionSchema')
+const mcqStore = require('../Models/McqStoreSchema')
 const display_mcq = async(req,res)=>{
     try{
 
@@ -9,11 +8,42 @@ const display_mcq = async(req,res)=>{
         
     }
     catch(error){
-
         console.error(error);
         res.status(500).json({ message: 'Error while fetching the mcq' });
                    
       }
+}
+
+const display_result = async(req,res)=>{
+    try{
+
+        const result = await mcqStore.findById(req.body._id)
+        res.status(200).json(result)
+    
+    }
+    catch(error){
+
+        res.status(500).json({message:'Error while fetching the result'})
+
+    }
+}
+
+
+const result_store = async(req,res)=>{
+    try{
+
+        const newResult = new mcqStore({
+            username:req.body.username,
+            TotalAttempts:req.body.TotalAttempts,
+            Date:Date.now()
+        });
+        const saveresult = await newResult.save();
+        res.status(200).json({message:'Result saved'})
+
+    }
+    catch(error){
+        res.status(500).json({message: 'Error while storing the mcq result'})
+    }
 }
 
 const add_mcq = async(req,res)=>{
@@ -33,4 +63,4 @@ const add_mcq = async(req,res)=>{
     }
 }
 
-module.exports = {display_mcq,add_mcq};
+module.exports = {display_mcq,add_mcq,result_store,display_result};
