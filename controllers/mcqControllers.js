@@ -12,19 +12,22 @@ const display_mcq = async(req,res)=>{
         res.status(500).json({ message: 'Error while fetching the mcq' });
                    
       }
-}
+} 
 
 const display_result = async(req,res)=>{
     try{
+        console.log(req.params.id)
 
-        const result = await mcqStore.findById(req.body._id)
-        res.status(200).json(result)
-    
+        // ///////////////////////
+        // const id_ = req.params.id.split("=");        
+        // ////////////////////////////
+
+        const result = await mcqStore.findById(req.params.id)
+        console.log(result+'d')
+        res.status(200).json(result) 
     }
     catch(error){
-
-        res.status(500).json({message:'Error while fetching the result'})
-
+        res.status(500).json({message:'Error while fetching the mcq result'})
     }
 }
 
@@ -38,11 +41,12 @@ const result_store = async(req,res)=>{
             Date:Date.now()
         });
         const saveresult = await newResult.save();
-        res.status(200).json({message:'Result saved'})
+        
+        res.status(200).json({message:saveresult})
 
     }
     catch(error){
-        res.status(500).json({message: 'Error while storing the mcq result'})
+        res.status(500).json({message: 'Error while adding the mcq result'})
     }
 }
 

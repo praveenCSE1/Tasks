@@ -3,16 +3,14 @@ const controller = require('../Controllers/mcqControllers')
 const router = express.Router();
 
 
+router.get('/:id',controller.display_result);
+
 //To display the mcq present in the database
-router.get('/mcq',controller.display_mcq);
+router.get('/',controller.display_mcq);
 
 //To add the mcq to the database
-router.post('/add_mcq',controller.add_mcq);
+router.post('/',controller.add_mcq);
 
-
-
-router.get('/getresult',controller.display_result);
-
-router.post('/add_result',controller.result_store)
+router.post('/result',controller.result_store)
 
 module.exports = router;
