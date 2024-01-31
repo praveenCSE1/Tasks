@@ -1,9 +1,9 @@
 
 const mongoose = require('../Models/db.js')
 const user = require('../Models/RegistrationSchema.js')
+const {generateToken}=require('../controllers/jwtControllers.js')
 const bcrypt = require('bcrypt')
-const jwt = require('jsonwebtoken')
-require('dotenv').config();
+
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
@@ -16,7 +16,7 @@ const signup = async (req,res)=>{
     if (existingUser) {
             return res.status(400).json({ message: 'Email already exists' });
         }
-    //Hashing the password with 10 saltrounds before storing the data
+
     const hpassword = await bcrypt.hash(password,10)
     console.log(hpassword);
     const n_user = new user({email,password:hpassword});
@@ -37,9 +37,10 @@ const login = async (req, res) => {
 
         //check whether the email and password matches
         if(u_password){
+          console.log(user._id)
 
-          //SENDING THE JWT
-          const token = jwt.sign({ userId: user._id }, SECRET_KEY);
+          const token = generateToken(user._id,user.role)
+          
           res.status(200).json({ message: 'Login successful', token: token });
         }
         else{

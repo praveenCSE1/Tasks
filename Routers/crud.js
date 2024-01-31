@@ -3,6 +3,7 @@ const express = require('express')
 const controllers = require('../Controllers/crudControllers');
 
 const router = express.Router();
+
 //routes
 router.post('/adduser',controllers.adduser);
 

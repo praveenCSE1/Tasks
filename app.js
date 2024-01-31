@@ -3,6 +3,7 @@ const app = express();
 const register = require('./Routers/register.js')
 const user = require('./Routers/crud.js')
 const mcq = require('./Routers/mcq.js')
+const { verifyAdminToken} = require('./controllers/jwtControllers.js')
 
 
 app.use(express.json());
@@ -10,7 +11,7 @@ app.use(express.urlencoded({extended:true}));
 const port = 4000;
 
 app.use('/',register);
-app.use('/',user)
+app.use('/',verifyAdminToken,user)
 app.use('/mcq',mcq)
 
 app.get('/',(req, res)=>{    
