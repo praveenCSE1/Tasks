@@ -1,6 +1,10 @@
 const mcq = require('../Models/McqQuestionSchema')
 const mcqStore = require('../Models/McqStoreSchema')
+
+
 const display_mcq = async(req,res)=>{
+
+    console.log(req.query)
     try{
 
         const mcqs = await mcq.find({});
@@ -16,13 +20,9 @@ const display_mcq = async(req,res)=>{
 
 const display_result = async(req,res)=>{
     try{
-        console.log(req.params.id)
+        console.log(req.query.id)
 
-        // ///////////////////////
-        // const id_ = req.params.id.split("=");        
-        // ////////////////////////////
-
-        const result = await mcqStore.findById(req.params.id)
+        const result = await mcqStore.findById(req.query.id)
         console.log(result+'d')
         res.status(200).json(result) 
     }

@@ -6,8 +6,7 @@ const router = express.Router();
 //routes
 router.post('/adduser',controllers.adduser);
 
-router.delete('/deleteuser',controllers.deleteuser);
-  
+router.delete('/deleteuser',controllers.deleteuser);  
 
 router.post('/updateuser',controllers.updateuser);
 

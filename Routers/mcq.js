@@ -2,8 +2,7 @@ const express = require('express')
 const controller = require('../Controllers/mcqControllers')
 const router = express.Router();
 
-
-router.get('/:id',controller.display_result);
+router.get('/result',controller.display_result);
 
 //To display the mcq present in the database
 router.get('/',controller.display_mcq);
@@ -13,4 +12,4 @@ router.post('/',controller.add_mcq);
 
 router.post('/result',controller.result_store)
 
-module.exports = router;
+module.exports = router;    

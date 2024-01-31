@@ -3,6 +3,8 @@ const app = express();
 const register = require('./Routers/register.js')
 const user = require('./Routers/crud.js')
 const mcq = require('./Routers/mcq.js')
+
+
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 const port = 4000;
