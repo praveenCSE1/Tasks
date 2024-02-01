@@ -9,7 +9,7 @@ const adduser = async(req,res)=>{
         name: req.body.name,
         email: req.body.email,
         department: req.body.department,
-        phn: req.body.mobileNumber,
+        phn: req.body.mobileNumber,       
         dob: req.body.dateOfBirth
     });
     const savedUser = await newUser.save();
