@@ -80,7 +80,8 @@ const updateuser = async (req, res) => {
       const db = mongoose.connection;
       const all = await db.collection('details').find({});
       const arr = await all.toArray();
-      console.log(arr);
+     
+      res.setHeader("set-cookie",`userId=${req.user.userId}`)
       res.json(arr);
     } catch (error) {
       console.error(error);

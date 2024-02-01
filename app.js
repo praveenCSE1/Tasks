@@ -14,8 +14,8 @@ app.use('/',register);
 app.use('/users',verifyAdminToken,user)
 app.use('/mcq',mcq)
 
-app.get('/',(req, res)=>{    
-    
+app.get('/',(req, res)=>{   
+      
      res.send('working');
 })
 

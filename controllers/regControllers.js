@@ -33,15 +33,13 @@ const login = async (req, res) => {
       //check whether the user with this email exist or not.
       if (user) {
 
-        const u_password = await bcrypt.compare(password, user.password);
+        const Userpassword = await bcrypt.compare(password, user.password);
 
         //check whether the email and password matches
-        if(u_password){
-          console.log(user._id)
+        if(Userpassword){
 
-          const token = generateToken(user._id,user.role)
-          
-          res.status(200).json({ message: 'Login successful', token: token });
+          const token = generateToken(user._id,user.role)         
+          res.status(200).json({ status: 'success',data:{ userID:user._id,role:user.role,email:user.email},token: token, });
         }
         else{
           return res.status(401).json({ message: 'Invalid Credentials' });
