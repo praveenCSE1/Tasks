@@ -11,7 +11,7 @@ app.use(express.urlencoded({extended:true}));
 const port = 4000;
 
 app.use('/',register);
-app.use('/',verifyAdminToken,user)
+app.use('/users',verifyAdminToken,user)
 app.use('/mcq',mcq)
 
 app.get('/',(req, res)=>{    

@@ -6,7 +6,7 @@ const {SECRET_KEY} = process.env;
 function generateToken(userId,userRole){
 
     const payload = {userId,role:userRole}
-    const token = jwt.sign(payload,SECRET_KEY)
+    const token = jwt.sign(payload,SECRET_KEY,{ expiresIn: '20m' })
     return token
 
 }

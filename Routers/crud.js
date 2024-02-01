@@ -12,6 +12,6 @@ router.delete('/deleteuser',controllers.deleteuser);
 router.post('/updateuser',controllers.updateuser);
 
 
-router.get('/users',controllers.users)
+router.get('/',controllers.users)
 
 module.exports = router;
