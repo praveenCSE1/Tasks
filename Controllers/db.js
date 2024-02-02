@@ -13,6 +13,10 @@ db.once('open', () => {
 const users = new mongoose.Schema({
   name:String,
   email:String,
+  role:{
+    type:String,
+    default:"USER"
+  },
   googleId:String
 });
 

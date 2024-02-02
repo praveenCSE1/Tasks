@@ -1,32 +1,18 @@
 const express = require('express')
 const app = express();
 const passport=require('./Controllers/Auth1')
-const session = require('express-session');
 
-
-
-app.use(session({
-    secret: 'secretkey', 
-    resave: false,
-    saveUninitialized: false
-  }));
 
 
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
-
-app.get('/auth/google/callback', 
+  app.get('/auth/google/callback', 
   passport.authenticate('google', { failureRedirect: '/login' }),
   function(req, res) {
-    
+    console.log(req.body);
     res.redirect('/success');
   });
 
-
-
-app.get('/success',(req,res)=>{
-    res.send('logged in')
-})
 
 
 app.get('/',(req,res)=>{
