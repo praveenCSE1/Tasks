@@ -1,6 +1,6 @@
 const express = require('express')
 const app = express();
-const passport=require('./Auth1')
+const passport=require('./Controllers/Auth1')
 const session = require('express-session');
 
 
@@ -11,7 +11,7 @@ app.use(session({
     saveUninitialized: false
   }));
 
-  
+
 app.get('/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] }));
 
