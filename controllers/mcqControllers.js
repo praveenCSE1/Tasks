@@ -4,7 +4,7 @@ const mcqStore = require('../Models/McqStoreSchema')
 
 const display_mcq = async(req,res)=>{
 
-    console.log(req.query)
+    console.log(req.query.username)
     try{
 
         const mcqs = await mcq.find({});

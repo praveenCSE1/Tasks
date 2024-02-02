@@ -5,14 +5,14 @@ const {SECRET_KEY} = process.env;
 
 function generateToken(userId,userRole){
     const payload = {userId,role:userRole}
-    const token = jwt.sign(payload,SECRET_KEY,{ expiresIn: '20m' })
+    const token = jwt.sign(payload,SECRET_KEY,{ expiresIn: '45m' })
     return token
 }
 
 function verifyToken(req, res, next) {
     const tok = req.headers['authorization'];
     const token = tok.split(' ')[1]
-  console.log(token)
+  
     if (!token) {
       return res.status(403).json({ message: 'Token is required' });
     }
@@ -46,7 +46,7 @@ function verifyAdminToken(req, res, next) {
   
       if (req.user.role !== 'ADMIN') {
 
-        return res.status(401).json({ message: 'Requires Admin access' });
+        return res.status(401).json({ message: 'Requires Admin access for this page' });
        
       }
   
