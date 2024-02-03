@@ -31,6 +31,7 @@ passport.use(new GoogleStrategy({
     callbackURL: "http://localhost:5000/auth/google/callback"
   },
   async function(accessToken, refreshToken, profile, done) {
+   
     
    Guser.findOne({email:profile.emails[0].value})
     .then(user=>{

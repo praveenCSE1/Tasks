@@ -1,7 +1,9 @@
 const express = require('express')
 const app = express();
-const passport=require('./Controllers/Auth1')
 const session = require('express-session');
+const passport=require('./Controllers/Auth1')
+const router = require('./Routes/Login')
+
 
 app.use(session({
   secret: process.env.GOOGLE_CLIENT_ID, 
@@ -33,19 +35,16 @@ app.get('/auth/google/callback',
     res.redirect('/success');
   });
 
-  app.get('/success',(req,res)=>{
-    res.send(req.user)
-})
 
-app.get('/ss',(req,res)=>{
-  res.send(req.session)
-})
+app.use('/',router)
 
 
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname + '/home.html');
 })
+
+
 
 
 app.listen(5000,()=>{
