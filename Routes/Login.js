@@ -9,7 +9,7 @@ router.get('/logout',(req,res)=>{
       if (err) {
         return next(err);
       }
-      res.send(req.user+'dddddddddd')
+      res.send('User logged out')
     });
   
   }
