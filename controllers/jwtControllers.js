@@ -10,6 +10,7 @@ function generateToken(userId,userRole){
 }
 
 function verifyToken(req, res, next) {
+ 
     const tok = req.headers['authorization'];
     const token = tok.split(' ')[1]
   
@@ -26,32 +27,15 @@ function verifyToken(req, res, next) {
       next();
     });
   }
-
-  
-function verifyAdminToken(req, res, next) {
-    const tok = req.headers['authorization'];
-
-    const token = tok.split(' ')[1]
-    
-    if (!token) {
-      return res.status(403).json({ message: 'Token is required' });
-    }
-  
-    jwt.verify(token, SECRET_KEY, (err, decoded) => {
-      if (err) {
-        return res.status(401).json({ message: 'Unauthorized' });
-      }
-      req.user = decoded;
-      console.log(req.user)
-  
-      if (req.user.role !== 'ADMIN') {
+  function isAdmin(req, res, next){
+    console.log(req.user)
+    if (req.user.role !== 'ADMIN') {
 
         return res.status(401).json({ message: 'Requires Admin access for this page' });
        
       }
-  
-      next();
-    });
-  }
 
-  module.exports = {generateToken,verifyToken,verifyAdminToken}
+      next();
+}
+
+  module.exports = {generateToken,verifyToken,isAdmin}

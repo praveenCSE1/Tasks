@@ -3,7 +3,7 @@ const app = express();
 const register = require('./Routers/register.js')
 const user = require('./Routers/crud.js')
 const mcq = require('./Routers/mcq.js')
-const { verifyAdminToken,verifyToken} = require('./controllers/jwtControllers.js')
+const {verifyToken,isAdmin} = require('./controllers/jwtControllers.js')
 
 
 app.use(express.json());
@@ -12,8 +12,9 @@ const port = 4000;
 
 app.use('/',register);
 
-//Include verifyAdminToken which will access the endpoint only after verfying the token
-app.use('/users',verifyAdminToken,user)
+//Included isAdmin middleware which will access the endpoint only after verfying the token
+app.use('/users',verifyToken,isAdmin,user)
+
 
 app.use('/mcq',verifyToken,mcq)
 
