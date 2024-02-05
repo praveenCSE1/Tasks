@@ -4,22 +4,22 @@ const details = require('../Models/DetailsSchema')
 
 const adduser = async(req,res)=>{
     try{   
+      console.log(req.user)
       const newUser = new details({
-        userid:req.body.name+req.body.dateOfBirth,
+        userId:req.user.userId,
         name: req.body.name,
-        email: req.body.email,
         department: req.body.department,
         phn: req.body.mobileNumber,       
         dob: req.body.dateOfBirth
     });
-    const savedUser = await newUser.save();
+    
+  const savedUser = await newUser.save();
    console.log(savedUser);
-    res.redirect('/users')
+   res.status(200).json({ message: 'Profile Added'});
     }
     catch(error){
-
       console.error(error);
-      res.status(500).json({ message: 'Error while adding the user' });
+      res.status(500).json({ message: 'Error while adding the user'});
                  
     }
     
@@ -27,17 +27,16 @@ const adduser = async(req,res)=>{
 
 const updateuser = async (req, res) => {
     try {
-        const db = mongoose.connection; 
-        console.log(req.body._id)
-        let current = await details.findByIdAndUpdate(
-          req.body._id, 
+        
+        console.log(req.user.userId)
+        let current = await details.findOneAndUpdate(
+          {userId:req.user.userId}, 
           {
             $set: {
-              
               name: req.body.name,
               email: req.body.email,
               department: req.body.department,
-              phn: req.body.mobileNumber,
+              phn: req.body.phn,
               dob: req.body.dateOfBirth,
             },
           },
@@ -78,10 +77,8 @@ const updateuser = async (req, res) => {
   const users = async(req, res)=>{    
     try {
       const db = mongoose.connection;
-      const all = await db.collection('details').find({});
+      const all = await db.collection('students').find({});
       const arr = await all.toArray();
-     
-      res.setHeader("set-cookie",`userId=${req.user.userId}`)
       res.json(arr);
     } catch (error) {
       console.error(error);
@@ -90,5 +87,18 @@ const updateuser = async (req, res) => {
     }
   }
 
-  module.exports = {adduser,deleteuser,updateuser,users};
+  const myprofile = async(req, res)=>{    
+    try {
+      const db = mongoose.connection;
+      const profile = await db.collection('students').findOne({userId:req.user.userId});
+   
+      res.json(profile);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Profile Not found' });
+      
+    }
+  }
+
+  module.exports = {adduser,deleteuser,updateuser,users,myprofile};
 

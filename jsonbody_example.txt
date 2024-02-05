@@ -1,9 +1,8 @@
 {
-    "_id": "65ab90af92b3536ae94b117b",
     "name": "madhavaddn",
     "email": "sekar@gmail.com",
     "department": "it",
-    "mobileNumber":"9436298321",
+    "phn":"9436298321",
     "dateOfBirth": "1-5-2004"
 }
 

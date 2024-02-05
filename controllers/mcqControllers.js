@@ -4,9 +4,7 @@ const mcqStore = require('../Models/McqStoreSchema')
 
 const display_mcq = async(req,res)=>{
 
-    console.log(req.query.username)
     try{
-
         const mcqs = await mcq.find({});
         res.json(mcqs);
         
@@ -20,9 +18,7 @@ const display_mcq = async(req,res)=>{
 
 const display_result = async(req,res)=>{
     try{
-        console.log(req.query.id)
-
-        const result = await mcqStore.findById(req.query.id)
+        const result = await mcqStore.findOne({userId:req.user.userId})
         console.log(result+'d')
         res.status(200).json(result) 
     }
@@ -36,7 +32,10 @@ const result_store = async(req,res)=>{
     try{
 
         const newResult = new mcqStore({
+            userId:req.user.userId,
             username:req.body.username,
+            Result:req.body.result,
+            marksObtained:req.body.marks,
             TotalAttempts:req.body.TotalAttempts,
             Date:Date.now()
         });
@@ -55,7 +54,7 @@ const add_mcq = async(req,res)=>{
         const newMcq= new mcq({
             question:req.body.question,
             options:req.body.options,
-            correct:req.body.correct,       
+                  
         });
         const savedUser = await newMcq.save();
         res.status(200).json({ message: 'mcq added successfully'});

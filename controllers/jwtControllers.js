@@ -1,7 +1,8 @@
 const jwt = require('jsonwebtoken')
 require('dotenv').config();
-
 const {SECRET_KEY} = process.env;
+
+
 
 function generateToken(userId,userRole){
     const payload = {userId,role:userRole}
@@ -31,11 +32,9 @@ function verifyToken(req, res, next) {
     console.log(req.user)
     if (req.user.role !== 'ADMIN') {
 
-        return res.status(401).json({ message: 'Requires Admin access for this page' });
-       
+        return res.status(401).json({ message: 'Requires Admin access for this page' });       
       }
-
       next();
 }
 
-  module.exports = {generateToken,verifyToken,isAdmin}
+module.exports = {generateToken,verifyToken,isAdmin}

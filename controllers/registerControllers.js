@@ -1,7 +1,7 @@
 
 const mongoose = require('../Models/db.js')
 const user = require('../Models/RegistrationSchema.js')
-const {generateToken}=require('../controllers/jwtControllers.js')
+const {generateToken}=require('./jwtControllers.js')
 const bcrypt = require('bcrypt')
 
 
@@ -15,8 +15,7 @@ const signup = async (req,res)=>{
     const existingUser = await user.findOne({ email });
     if (existingUser) {
             return res.status(400).json({ message: 'Email already exists' });
-        }
-
+    }
     const hpassword = await bcrypt.hash(password,10)
     console.log(hpassword);
     const n_user = new user({email,password:hpassword});
@@ -38,7 +37,8 @@ const login = async (req, res) => {
         //check whether the email and password matches
         if(Userpassword){
 
-          const token = generateToken(user._id,user.role)         
+          const token = generateToken(user._id,user.role)    
+          console.log(token);     
           res.status(200).json({ status: 'success',data:{ userID:user._id,role:user.role,email:user.email},token: token, });
         }
         else{
@@ -51,6 +51,6 @@ const login = async (req, res) => {
       console.error(error);
       res.status(500).json({ message: 'Internal Server Error'});
     }
-  }
+}
 
   module.exports = {signup,login}

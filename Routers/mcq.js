@@ -1,5 +1,5 @@
 const express = require('express')
-const controller = require('../Controllers/mcqControllers')
+const controller = require('../controllers/mcqControllers')
 const router = express.Router();
 
 router.get('/result',controller.display_result);

@@ -1,6 +1,7 @@
 const mongoose = require('./db.js')
 
 const uschema = new mongoose.Schema({
+    
     email:String,
     password:String,
     role:{
